@@ -544,61 +544,7 @@ class MyAppState extends State<MyApp> {
                       ),
                     ],
                   );
-                } else if (snapshot.hasError)
-                  return Container(
-                    height: 500,
-                    margin: EdgeInsets.all(10),
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/bug_fixed.png',
-                          width: 250,
-                          fit: BoxFit.fitWidth,
-                        ),
-                        Text(
-                          ' ',
-                          style: TextStyle(
-                            height: 1.5,
-                          ),
-                        ),
-                        Text(
-                          'Oh Oh, Houston we have a problem!',
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              height: 1.0,
-                              letterSpacing: 0.25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          ' ',
-                          style: TextStyle(
-                            height: 1.0,
-                          ),
-                        ),
-                        Text(
-                          'Check your network or give the location permission to the app.',
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              height: 1.0,
-                              letterSpacing: 0.25,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white),
-                        ),
-                        //Text(
-                        //  '${snapshot.error}',
-                        //  style: TextStyle(
-                        //      fontSize: 20.0,
-                        //      height: 1.5,
-                        //      letterSpacing: 0.25,
-                        //      color: Colors.red),
-                        //),
-                      ],
-                    ),
-                  );
+                }
                 return CircularProgressIndicator(); //Default show loading
               },
             ),
