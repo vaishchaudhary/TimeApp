@@ -26,6 +26,7 @@ class Weather {
         description: json['description'],
         icon: json['icon']);
   }
+
 }
 
 class Main {
@@ -129,6 +130,8 @@ class WeatherModel {
       this.id,
       this.name,
       this.cod});
+
+
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
