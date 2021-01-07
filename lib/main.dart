@@ -1,8 +1,10 @@
 import 'package:weather_app/weather_repo.dart';
 
+import 'city_repo.dart';
 import 'home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'location_bloc.dart';
 import 'weather_bloc.dart';
 import 'home_screen.dart';
 
@@ -14,9 +16,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        create: (context) => WeatherBloc(WeatherRepo()),
-        child: HomeScreen(),
+      home:MultiBlocProvider(providers: [
+        BlocProvider<LocationBloc>(
+          create: (BuildContext context) => LocationBloc(CityRepo()),
+        ),
+        BlocProvider<WeatherBloc>(
+          create: (BuildContext context) => WeatherBloc(WeatherRepo()),
+        ),
+      ], child: HomeScreen(),
+
       ),
     );
   }
