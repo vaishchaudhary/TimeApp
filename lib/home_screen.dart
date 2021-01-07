@@ -5,10 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
-
+import 'package:weather_app/location_bloc.dart';
 import 'WeatherModel.dart';
+import 'city_screen.dart';
+import 'constant.dart';
 import 'weather_bloc.dart';
-
 //
 // Future<WeatherModel> getWeather(String lat, String lng) async {
 //   final response = await http.get(
@@ -34,15 +35,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Location location = new Location();
   WeatherBloc weatherBloc;
+  LocationBloc locationBloc;
   String error;
 
   @override
   void initState() {
     //Default value
     weatherBloc = BlocProvider.of<WeatherBloc>(context);
-    print("hey its me");
-    currentLocation['latitude'] = 25.6667;
-    currentLocation['longitude'] = -100.3167;
+    locationBloc = BlocProvider.of<LocationBloc>(context);
+    initPlatformState();
+
+  }
+  void CityChangeRequest() {
+    var longitude = long;
+    var latitude = lat;
+    weatherBloc.add(WeatherData(latitude.toString(),longitude.toString()));
   }
 
   @override
@@ -72,20 +79,20 @@ class _HomeScreenState extends State<HomeScreen> {
           child: BlocBuilder<WeatherBloc, WeatherInfo>(
             bloc: weatherBloc,
             builder: (context, state) {
-              initPlatformState();
+             // initPlatformState();
               WeatherModel model;
               //   _bloc.add(Events(currentLocation['latitude'],currentLocation['longitude']));
               // locationSubscription =
               //     location.onLocationChanged.listen((LocationData result) {
               //   weatherBloc.add(Events(result.latitude, result.longitude));
               // });
-              if (state is WeatherState) {
-                currentLocation['latitude'] = state.lat;
-                currentLocation['longitude'] = state.long;
-              }
-              weatherBloc.add(WeatherData(
-                  currentLocation['latitude'].toString(),
-                  currentLocation['longitude'].toString()));
+              // if (state is WeatherState) {
+              //   currentLocation['latitude'] = state.lat;
+              //   currentLocation['longitude'] = state.long;
+              // }
+              // weatherBloc.add(WeatherData(
+              //     currentLocation['latitude'].toString(),
+              //     currentLocation['longitude'].toString()));
               if (state is Fetchweatherdata) {
                 print("Fetching");
                 model = state.weatherModel;
@@ -137,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CityScreen()));
+                                                CityScreen(locationBloc,changeQuery: CityChangeRequest)));
                                   },
                                   child: Text(
                                     '${model.name}',
@@ -154,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  CityScreen()));
+                                                  CityScreen(locationBloc,changeQuery: CityChangeRequest)));
                                     }),
                               ],
                             ),
@@ -634,5 +641,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     currentLocation['latitude'] = my_location.latitude;
     currentLocation['longitude'] = my_location.longitude;
+    weatherBloc.add(WeatherData(
+        currentLocation['latitude'].toString(),
+        currentLocation['longitude'].toString()));
   }
 }
