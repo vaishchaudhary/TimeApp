@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 
 import 'WeatherModel.dart';
+import 'city_screen.dart';
 import 'weather_bloc.dart';
 
 //
@@ -127,13 +128,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                            Text(
-                              '${model.name}',
-                              style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CityScreen()));
+                                  },
+                                  child: Text(
+                                    '${model.name}',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                IconButton(
+                                    icon: Icon(Icons.arrow_drop_down),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CityScreen()));
+                                    }),
+                              ],
                             ),
+
                             Text(
                               '${model.main.temp_max}/${model.main.temp_min}',
                               style: TextStyle(
@@ -577,7 +603,11 @@ class _HomeScreenState extends State<HomeScreen> {
               //      color: Colors.red),
               //),
               else
-                return CircularProgressIndicator(); //Default show loading
+                return Container(
+                  child: CircularProgressIndicator(),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width,
+                ); //Default show loading
             },
           ),
         ),
