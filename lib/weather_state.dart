@@ -1,5 +1,9 @@
 part of 'weather_bloc.dart';
-class WeatherState
+class WeatherInfo
+{
+
+}
+class WeatherState extends WeatherInfo
 {
   double lat=0.0,long=0.0;
 //  WeatherState()
@@ -12,4 +16,9 @@ class WeatherState
     this.lat=lat;
     this.long=long;
   }
+}
+class Fetchweatherdata extends WeatherInfo
+{
+  WeatherModel weatherModel;
+  Fetchweatherdata(this.weatherModel);
 }
