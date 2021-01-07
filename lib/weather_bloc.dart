@@ -3,9 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
+import 'package:weather_app/WeatherModel.dart';
+import 'package:weather_app/weather_repo.dart';
 part 'weather_state.dart';
+class Event
+{
 
-class Events {
+}
+class Events extends Event  {
   double lat,long;
   Events(double lat,double long)
   {
@@ -13,16 +18,28 @@ class Events {
     this.long=long;
   }
 }
-class WeatherBloc extends Bloc<Events, WeatherState>{
-  WeatherBloc() : super(WeatherState(0.0, 0.0));
+class WeatherData extends Event
+{
+  WeatherData(this.lat,this.lon);
+  String lat;
+  String lon;
+}
+class WeatherBloc extends Bloc<Event, WeatherInfo>{
+  WeatherRepo weatherRepo;
+  WeatherBloc(this.weatherRepo) : super(null);
 
   @override
-  Stream<WeatherState> mapEventToState(Events event) async*{
+  Stream<WeatherInfo> mapEventToState(Event event) async*{
     // TODO: implement mapEventToState
 
     if(event is Events)
       {
         yield WeatherState(event.lat, event.long);
+      }
+    else if ( event is WeatherData)
+      {
+        WeatherModel weatherModel=await weatherRepo.getWeather(event.lat, event.lon);
+        yield(Fetchweatherdata(weatherModel));
       }
 
   }
