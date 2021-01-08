@@ -1,5 +1,5 @@
-double lat = 0.0;
-double long = 0.0;
+double lat;
+double long;
 int numberOfRestaurantsShown = 10;
 String lang = 'English';
 

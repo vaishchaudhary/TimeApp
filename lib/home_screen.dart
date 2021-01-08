@@ -46,9 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
     initPlatformState();
 
   }
-  void CityChangeRequest() {
-    var longitude = long;
-    var latitude = lat;
+  void CityChangeRequest(double latitude,double longitude) {
+    print(longitude);
+    print(latitude);
     weatherBloc.add(WeatherData(latitude.toString(),longitude.toString()));
   }
 
@@ -608,7 +608,11 @@ class _HomeScreenState extends State<HomeScreen> {
               //      color: Colors.red),
               //),
               else
-                return CircularProgressIndicator(); //Default show loading
+                return Container(
+                  child: CircularProgressIndicator(),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width,
+                );
             },
           ),
         ),

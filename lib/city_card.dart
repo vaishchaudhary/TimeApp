@@ -20,10 +20,12 @@ class CityCard {
       //    print("changes");
           lat=latitude;
           long=longitude;
-         // print(lat);
-        //  print(long);
-          changeQuery();
-
+          print("Done");
+          print(lat);
+         print(long);
+          changeQuery(lat,long);
+           print(lat);
+           print(long);
           Navigator.pop(context);
         },
         child: Card(
