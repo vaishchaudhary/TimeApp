@@ -10,6 +10,7 @@ import 'WeatherModel.dart';
 import 'city_screen.dart';
 import 'constant.dart';
 import 'weather_bloc.dart';
+import 'package:geocoder/geocoder.dart';
 //
 // Future<WeatherModel> getWeather(String lat, String lng) async {
 //   final response = await http.get(
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   WeatherBloc weatherBloc;
   LocationBloc locationBloc;
   String error;
-
+  String name;
   @override
   void initState() {
     //Default value
@@ -46,10 +47,18 @@ class _HomeScreenState extends State<HomeScreen> {
     initPlatformState();
 
   }
-  void CityChangeRequest(double latitude,double longitude) {
-    print(longitude);
-    print(latitude);
+  Future<void> getCoordinatesFromCityName(String cityName) async {
+// From a query
+    final query = cityName;
+    var addresses = await Geocoder.local.findAddressesFromQuery(query);
+    var first = addresses.first;
+    var latitude=first.coordinates.latitude.toString();
+    var longitude=first.coordinates.longitude.toString();
     weatherBloc.add(WeatherData(latitude.toString(),longitude.toString()));
+  }
+  void CityChangeRequest(String query) {
+   name=query;
+    getCoordinatesFromCityName(query);
   }
 
   @override
@@ -97,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 print("Fetching");
                 model = state.weatherModel;
                 //Format date
+                name=name??model.name;
                 var fm = new DateFormat('MMMM dd, yyyy');
                 var fm_hour = new DateFormat.Hm();
                 print(model.weather[0].icon);
@@ -147,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 CityScreen(locationBloc,changeQuery: CityChangeRequest)));
                                   },
                                   child: Text(
-                                    '${model.name}',
+                                    '${name}',
                                     style: TextStyle(
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold,

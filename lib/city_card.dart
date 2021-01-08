@@ -6,10 +6,8 @@ import 'constants.dart';
 
 class CityCard {
   String cityName;
-  double longitude;
-  double latitude;
   final Function changeQuery;
-  CityCard(this.longitude,this.latitude,{this.cityName, this.changeQuery});
+  CityCard({this.cityName, this.changeQuery});
 
   Widget myCityCard(context) {
     return Container(
@@ -18,12 +16,11 @@ class CityCard {
         onTap: (){
         //  cityNameToDisplay=cityName;
       //    print("changes");
-          lat=latitude;
-          long=longitude;
+
           print("Done");
           print(lat);
          print(long);
-          changeQuery(lat,long);
+          changeQuery(cityName);
            print(lat);
            print(long);
           Navigator.pop(context);

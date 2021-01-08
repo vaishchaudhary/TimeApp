@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'location_bloc.dart';
 import 'weather_bloc.dart';
 import 'home_screen.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

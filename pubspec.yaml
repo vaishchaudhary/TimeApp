@@ -32,6 +32,7 @@ dependencies:
   http: any
   location: ^3.0.2
   flutter_bloc: ^5.0.1
+  geocoder: ^0.2.1
 
 dev_dependencies:
   flutter_test:

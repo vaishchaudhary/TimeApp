@@ -57,9 +57,9 @@ class _CityScreenState extends State<CityScreen> {
                         if (state is LocationIsLoading) {
                           return ListView.builder(
                             itemCount:
-                            state.cityModel.locationSuggestions == null ? 0 : state.cityModel.locationSuggestions.length,
+                            state.cityModel.predictions == null ? 0 : state.cityModel.predictions.length,
                             itemBuilder: (BuildContext ctxt, int index) {
-                              return CityCard(state.cityModel.locationSuggestions[index].longitude,state.cityModel.locationSuggestions[index].latitude,cityName: state.cityModel.locationSuggestions[index].cityName,changeQuery:widget.changeQuery)
+                              return CityCard(cityName: state.cityModel.predictions[index].title,changeQuery:widget.changeQuery)
                                   .myCityCard(context);
                             },
                           );

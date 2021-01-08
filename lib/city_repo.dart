@@ -22,10 +22,12 @@ class CityRepo {
   // }
 
   Future<CityModel> fetchCities(String cityKeyword) async {
+    print(cityKeyword);
     var url =
-        'https://developers.zomato.com/api/v2.1/locations?query=${cityKeyword}&count=10';
+        'https://geoproxy.dev.iamplus.services/search?input='+'$cityKeyword'+'&location=0,0';
     final response = await http
-        .get(url, headers: {'user-key': '809a84225d5dc872c416d2013743426b'});
+        .get(url);
+    https://geoproxy.dev.iamplus.services/search?input=kan&location=0,0
 
     //print(response);
 
