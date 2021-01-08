@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
-import 'package:weather_app/WeatherModel.dart';
-import 'package:weather_app/weather_repo.dart';
-part 'weather_state.dart';
+import 'package:weather_app/repository/model/WeatherModel.dart';
+import 'package:weather_app/repository/provider/weather_repo.dart';
+part '../states/weather_state.dart';
 class Event
 {
 

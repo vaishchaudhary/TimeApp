@@ -1,12 +1,12 @@
-import 'package:weather_app/weather_repo.dart';
+import 'package:weather_app/repository/provider/weather_repo.dart';
 
-import 'city_repo.dart';
-import 'home_screen.dart';
+import 'repository/provider/city_repo.dart';
+import 'home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'location_bloc.dart';
-import 'weather_bloc.dart';
-import 'home_screen.dart';
+import 'bloc/provider/location_bloc.dart';
+import 'bloc/provider/weather_bloc.dart';
+import 'home_screen/home_screen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'city_model.dart';
-import 'city_repo.dart';
-import 'location_event.dart';
-import 'location_state.dart';
+import 'package:weather_app/repository/model/city_model.dart';
+
+import '../../repository/provider/city_repo.dart';
+import '../events/location_event.dart';
+import '../states/location_state.dart';
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   CityRepo cityRepo;
   CityModel  cityModel;

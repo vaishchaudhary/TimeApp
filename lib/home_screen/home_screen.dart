@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
-import 'package:weather_app/location_bloc.dart';
-import 'WeatherModel.dart';
-import 'city_screen.dart';
-import 'constant.dart';
-import 'weather_bloc.dart';
+import 'package:weather_app/bloc/provider/location_bloc.dart';
+import '../repository/model/WeatherModel.dart';
+import '../city_screen/city_screen.dart';
+import '../constants/constant.dart';
+import '../bloc/provider/weather_bloc.dart';
 import 'package:geocoder/geocoder.dart';
 //
 // Future<WeatherModel> getWeather(String lat, String lng) async {

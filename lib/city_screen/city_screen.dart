@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'city_card.dart';
-import 'location_bloc.dart';
-import 'location_event.dart';
-import 'location_state.dart';
+import 'widgets/city_card.dart';
+import '../bloc/provider/location_bloc.dart';
+import '../bloc/events/location_event.dart';
+import '../bloc/states/location_state.dart';
 
 class CityScreen extends StatefulWidget {
   LocationBloc locationBloc;

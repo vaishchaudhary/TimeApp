@@ -1,4 +1,4 @@
-part of 'weather_bloc.dart';
+part of '../provider/weather_bloc.dart';
 class WeatherInfo
 {
 
