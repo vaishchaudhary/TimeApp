@@ -9,8 +9,6 @@ part of 'api_client.dart';
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    baseUrl ??=
-        'https://geoproxy.dev.iamplus.services/search?input=kan&location=0,0';
   }
 
   final Dio _dio;

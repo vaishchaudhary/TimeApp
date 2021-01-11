@@ -32,7 +32,13 @@ class CityRepo {
     // https://geoproxy.dev.iamplus.services/search?input=kan&location=0,0
 
     //print(response);
-    final client = ApiClient(Dio(BaseOptions(contentType: 'application/json')));
+    String cityQuery = '?input=$cityKeyword&location=0,0';
+    String baseUrl = 'https://geoproxy.dev.iamplus.services/search' + cityQuery;
+    final client = ApiClient(
+      Dio(
+        BaseOptions(contentType: 'application/json', baseUrl: baseUrl),
+      ),
+    );
     final response = await client.getCities();
     var res = response.toJson();
 

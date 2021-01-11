@@ -9,9 +9,7 @@ class Apis {
   static const String users = '/users';
 }
 
-@RestApi(
-    baseUrl:
-        "https://geoproxy.dev.iamplus.services/search?input=kan&location=0,0")
+@RestApi(baseUrl: '')
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
