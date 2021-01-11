@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:weather_app/bloc/provider/location_bloc.dart';
 import 'package:weather_app/weather.dart';
-import '../city_screen/city_screen.dart';
-import '../constants/constant.dart';
+
 import '../bloc/provider/weather_bloc.dart';
-import 'package:geocoder/geocoder.dart';
+import '../city_screen/city_screen.dart';
 
 //
 // Future<WeatherModel> getWeather(String lat, String lng) async {
@@ -40,25 +40,28 @@ class _HomeScreenState extends State<HomeScreen> {
   LocationBloc locationBloc;
   String error;
   String name;
+
   @override
   void initState() {
     //Default value
     weatherBloc = BlocProvider.of<WeatherBloc>(context);
     locationBloc = BlocProvider.of<LocationBloc>(context);
     initPlatformState();
-
   }
+
   Future<void> getCoordinatesFromCityName(String cityName) async {
 // From a query
     final query = cityName;
     var addresses = await Geocoder.local.findAddressesFromQuery(query);
     var first = addresses.first;
-    var latitude=first.coordinates.latitude.toString();
-    var longitude=first.coordinates.longitude.toString();
-    weatherBloc.add(FetchWeatherData(double.parse(latitude),double.parse(longitude)));
+    var latitude = first.coordinates.latitude.toString();
+    var longitude = first.coordinates.longitude.toString();
+    weatherBloc
+        .add(FetchWeatherData(double.parse(latitude), double.parse(longitude)));
   }
+
   void CityChangeRequest(String query) {
-   name=query;
+    name = query;
     getCoordinatesFromCityName(query);
   }
 
@@ -89,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: BlocBuilder<WeatherBloc, WeatherInfo>(
             bloc: weatherBloc,
             builder: (context, state) {
-             // initPlatformState();
+              // initPlatformState();
               WeatherModel model;
               //   _bloc.add(Events(currentLocation['latitude'],currentLocation['longitude']));
               // locationSubscription =
@@ -107,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 print("Fetching");
                 model = state.weatherModel;
                 //Format date
-                name=name??model.name;
+                name = name ?? model.name;
 
                 var fm = new DateFormat('MMMM dd, yyyy');
                 var fm_hour = new DateFormat.Hm();
@@ -140,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fit: BoxFit.fitWidth,
                             ),
                             Text(
-                              '${model.main.temp??21.2}°C',
+                              '${model.temp}°C',
                               style: TextStyle(
                                   fontSize: 40.0,
                                   fontWeight: FontWeight.bold,
@@ -155,8 +158,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                CityScreen(locationBloc,changeQuery: CityChangeRequest)));
+                                            builder: (context) => CityScreen(
+                                                locationBloc,
+                                                changeQuery:
+                                                    CityChangeRequest)));
                                   },
                                   child: Text(
                                     '${name}',
@@ -172,13 +177,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  CityScreen(locationBloc,changeQuery: CityChangeRequest)));
+                                              builder: (context) => CityScreen(
+                                                  locationBloc,
+                                                  changeQuery:
+                                                      CityChangeRequest)));
                                     }),
                               ],
                             ),
                             Text(
-                              '${model.main.temp_max??21.3}/${model.main.temp_min??21.3}',
+                              '${model.temp_max}/${model.temp_min}',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontFamily: 'Roboto',
@@ -298,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.main.temp}°C',
+                                                  '${model.temp}°C',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -346,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.wind.speed??43.4} m/s',
+                                                  '${model.speed} m/s',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -394,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.main.humidity??90} %',
+                                                  '${model.humidity} %',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -442,7 +449,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.main.pressure??21.3} hPa',
+                                                  '${model.pressure} hPa',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -489,17 +496,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     fontFamily: 'Montserrat',
                                                   ),
                                                 ),
-                                                Text(
-                                                  '${model.visibility / 1000} km',
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    height: 1.0,
-                                                    letterSpacing: 0.25,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontFamily: 'Roboto',
-                                                  ),
-                                                ),
+                                                // Text(
+                                                //   '${model.visibility / 1000} km',
+                                                //   style: TextStyle(
+                                                //     fontSize: 15.0,
+                                                //     height: 1.0,
+                                                //     letterSpacing: 0.25,
+                                                //     fontWeight:
+                                                //         FontWeight.normal,
+                                                //     fontFamily: 'Roboto',
+                                                //   ),
+                                                // ),
                                               ],
                                             ),
                                           ),
@@ -545,7 +552,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         Text(
-                                          '${model.clouds.all??5} %',
+                                          '${model.all} %',
                                           style: TextStyle(
                                             fontSize: 15.0,
                                             height: 1.0,
@@ -658,7 +665,6 @@ class _HomeScreenState extends State<HomeScreen> {
     currentLocation['latitude'] = my_location.latitude;
     currentLocation['longitude'] = my_location.longitude;
     weatherBloc.add(FetchWeatherData(
-        currentLocation['latitude'],
-        currentLocation['longitude']));
+        currentLocation['latitude'], currentLocation['longitude']));
   }
 }
