@@ -6,11 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:weather_app/bloc/provider/location_bloc.dart';
-import '../repository/model/WeatherModel.dart';
+import 'package:weather_app/weather.dart';
 import '../city_screen/city_screen.dart';
 import '../constants/constant.dart';
 import '../bloc/provider/weather_bloc.dart';
 import 'package:geocoder/geocoder.dart';
+
 //
 // Future<WeatherModel> getWeather(String lat, String lng) async {
 //   final response = await http.get(
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var first = addresses.first;
     var latitude=first.coordinates.latitude.toString();
     var longitude=first.coordinates.longitude.toString();
-    weatherBloc.add(WeatherData(latitude.toString(),longitude.toString()));
+    weatherBloc.add(FetchWeatherData(double.parse(latitude),double.parse(longitude)));
   }
   void CityChangeRequest(String query) {
    name=query;
@@ -107,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 model = state.weatherModel;
                 //Format date
                 name=name??model.name;
+
                 var fm = new DateFormat('MMMM dd, yyyy');
                 var fm_hour = new DateFormat.Hm();
                 print(model.weather[0].icon);
@@ -138,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fit: BoxFit.fitWidth,
                             ),
                             Text(
-                              '${model.main.temp}°C',
+                              '${model.main.temp??21.2}°C',
                               style: TextStyle(
                                   fontSize: 40.0,
                                   fontWeight: FontWeight.bold,
@@ -176,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Text(
-                              '${model.main.temp_max}/${model.main.temp_min}',
+                              '${model.main.temp_max??21.3}/${model.main.temp_min??21.3}',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontFamily: 'Roboto',
@@ -344,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.wind.speed} m/s',
+                                                  '${model.wind.speed??43.4} m/s',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -392,7 +394,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.main.humidity} %',
+                                                  '${model.main.humidity??90} %',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -440,7 +442,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.main.pressure} hPa',
+                                                  '${model.main.pressure??21.3} hPa',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -543,7 +545,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         Text(
-                                          '${model.clouds.all} %',
+                                          '${model.clouds.all??5} %',
                                           style: TextStyle(
                                             fontSize: 15.0,
                                             height: 1.0,
@@ -655,8 +657,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     currentLocation['latitude'] = my_location.latitude;
     currentLocation['longitude'] = my_location.longitude;
-    weatherBloc.add(WeatherData(
-        currentLocation['latitude'].toString(),
-        currentLocation['longitude'].toString()));
+    weatherBloc.add(FetchWeatherData(
+        currentLocation['latitude'],
+        currentLocation['longitude']));
   }
 }
