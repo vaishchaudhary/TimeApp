@@ -1,4 +1,5 @@
 import 'package:weather_app/repository/provider/weather_repo.dart';
+import 'package:weather_app/weather_repository.dart';
 
 import 'repository/provider/city_repo.dart';
 import 'home_screen/home_screen.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => LocationBloc(CityRepo()),
         ),
         BlocProvider<WeatherBloc>(
-          create: (BuildContext context) => WeatherBloc(WeatherRepo()),
+          create: (BuildContext context) => WeatherBloc(WeatherRepository()),
         ),
       ], child: HomeScreen(),
 
