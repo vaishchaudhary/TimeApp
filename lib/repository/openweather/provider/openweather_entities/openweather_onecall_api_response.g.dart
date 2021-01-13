@@ -51,8 +51,7 @@ Current _$CurrentFromJson(Map<String, dynamic> json) {
     feelsLike: (json['feels_like'] as num)?.toDouble(),
     pressure: json['pressure'] as int,
     humidity: json['humidity'] as int,
-  //  dewPoint: (json['dew_point'] as num)?.toDouble(),
-  //  uvi: json['uvi'] as int,
+    uvi: json['uvi'] as int,
     clouds: json['clouds'] as int,
     visibility: json['visibility'] as int,
     weather: (json['weather'] as List)
@@ -72,8 +71,7 @@ Map<String, dynamic> _$CurrentToJson(Current instance) => <String, dynamic>{
       'feels_like': instance.feelsLike,
       'pressure': instance.pressure,
       'humidity': instance.humidity,
- //     'dew_point': instance.dewPoint,
-  //    'uvi': instance.uvi,
+      'uvi': instance.uvi,
       'clouds': instance.clouds,
       'visibility': instance.visibility,
       'wind_speed': instance.windSpeed,
@@ -116,8 +114,6 @@ Hourly _$HourlyFromJson(Map<String, dynamic> json) {
     feels_like: (json['feels_like'] as num)?.toDouble(),
     pressure: json['pressure'] as int,
     humidity: json['humidity'] as int,
- //   dew_point: json['dew_point'] as double,
-   // uvi: json['uvi'] as int  ,
     clouds: json['clouds'] as int,
     visibility: json['visibility'] as int,
     wind_speed: (json['double'] as num)?.toDouble(),
@@ -126,7 +122,6 @@ Hourly _$HourlyFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : Weather.fromJson(e as Map<String, dynamic>))
         ?.toList(),
- //   pop: json['pop'] as double,
   );
 }
 
@@ -136,14 +131,11 @@ Map<String, dynamic> _$HourlyToJson(Hourly instance) => <String, dynamic>{
       'feels_like': instance.feels_like,
       'pressure': instance.pressure,
       'humidity': instance.humidity,
- //     'dew_point': instance.dew_point,
-   //   'uvi': instance.uvi,
       'clouds': instance.clouds,
       'visibility': instance.visibility,
       'double': instance.wind_speed,
       'wind_deg': instance.wind_deg,
       'weather': instance.weather,
-    //  'pop': instance.pop,
     };
 
 Daily _$DailyFromJson(Map<String, dynamic> json) {
@@ -159,7 +151,6 @@ Daily _$DailyFromJson(Map<String, dynamic> json) {
         : FeelsLike.fromJson(json['feels_like'] as Map<String, dynamic>),
     pressure: json['pressure'] as int,
     humidity: json['humidity'] as int,
-  //  dewPoint: json['dew_point'] as int,
     windSpeed: (json['wind_speed'] as num)?.toDouble(),
     windDeg: json['wind_deg'] as int,
     weather: (json['weather'] as List)
@@ -167,8 +158,6 @@ Daily _$DailyFromJson(Map<String, dynamic> json) {
             e == null ? null : Weather.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     clouds: json['clouds'] as int,
-  //  pop: json['pop'] as double,
- //   uvi: (json['uvi'] as num)?.toDouble(),
   );
 }
 
@@ -180,13 +169,10 @@ Map<String, dynamic> _$DailyToJson(Daily instance) => <String, dynamic>{
       'feels_like': instance.feelsLike,
       'pressure': instance.pressure,
       'humidity': instance.humidity,
-   //   'dew_point': instance.dewPoint,
       'wind_speed': instance.windSpeed,
       'wind_deg': instance.windDeg,
       'weather': instance.weather,
       'clouds': instance.clouds,
-  //    'pop': instance.pop,
-    //  'uvi': instance.uvi,
     };
 
 Temp _$TempFromJson(Map<String, dynamic> json) {

@@ -38,7 +38,7 @@ class WeatherBloc extends Bloc<Event, WeatherInfo>{
       }
     else if ( event is FetchWeatherData)
       {
-        WeatherModel weatherModel=await weatherRepository.getWeatherReport(event.lat, event.lon);
+        WeatherModel weatherModel=await weatherRepository.getWeatherForecast(event.lat, event.lon);
         yield(Fetchweatherdata(weatherModel));
       }
 
