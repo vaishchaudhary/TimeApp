@@ -1,5 +1,5 @@
-import 'package:weather_app/repository/provider/weather_repo.dart';
-import 'package:weather_app/weather_repository.dart';
+
+import 'package:weather_app/repository/provider/weather_repository.dart';
 
 import 'repository/provider/city_repo.dart';
 import 'home_screen/home_screen.dart';

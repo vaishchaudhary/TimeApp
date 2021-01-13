@@ -1,5 +1,5 @@
-import 'repository/openweather/provider/openweather_entities/openweather_onecall_api_response.dart';
-import 'weathermodel.dart';
+import '../provider/openweather_entities/openweather_onecall_api_response.dart';
+import '../../model/weathermodel.dart';
 WeatherModel mapOpenWeatherToWeather(WeatherResponse value) {
   try {
     var weather = WeatherModel();

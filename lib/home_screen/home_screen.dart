@@ -7,7 +7,7 @@ import 'package:geocoder/geocoder.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:weather_app/bloc/provider/location_bloc.dart';
-import 'package:weather_app/weathermodel.dart';
+import 'package:weather_app/repository/model/weathermodel.dart';
 
 
 import '../bloc/provider/weather_bloc.dart';
