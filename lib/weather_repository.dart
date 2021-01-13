@@ -1,7 +1,8 @@
 import 'package:weather_app/openweather_repository.dart';
-import 'package:weather_app/openweather_response.dart';
-import 'package:weather_app/weather.dart';
+
+
 import 'package:weather_app/weather_respository_abstract.dart';
+import 'package:weather_app/weathermodel.dart';
 
  class WeatherRepository implements WeatherRepositoryAbstract
 {

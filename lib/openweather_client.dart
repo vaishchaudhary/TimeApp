@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-
-import 'openweather_response.dart';
-
+import 'package:weather_app/repository/openweather/provider/openweather_entities/openweather_onecall_api_response.dart';
 
 part 'openweather_client.g.dart';
 

@@ -7,7 +7,8 @@ import 'package:geocoder/geocoder.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:weather_app/bloc/provider/location_bloc.dart';
-import 'package:weather_app/weather.dart';
+import 'package:weather_app/weathermodel.dart';
+
 
 import '../bloc/provider/weather_bloc.dart';
 import '../city_screen/city_screen.dart';
@@ -110,11 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 print("Fetching");
                 model = state.weatherModel;
                 //Format date
-                name = name ?? model.name;
+
 
                 var fm = new DateFormat('MMMM dd, yyyy');
                 var fm_hour = new DateFormat.Hm();
-                print(model.weather[0].icon);
+                print(model.icon);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -138,12 +139,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             //  height: 50,
                             //),
                             Image.asset(
-                              'assets/images/weather/${model.weather[0].icon}.png',
+                              'assets/images/weather/${model.icon}.png',
                               width: 100,
                               fit: BoxFit.fitWidth,
                             ),
                             Text(
-                              '${model.temp}°C',
+                              '${model.temperature}°C',
                               style: TextStyle(
                                   fontSize: 40.0,
                                   fontWeight: FontWeight.bold,
@@ -164,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     CityChangeRequest)));
                                   },
                                   child: Text(
-                                    '${name}',
+                                    '${model.timezone}',
                                     style: TextStyle(
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold,
@@ -185,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Text(
-                              '${model.temp_max}/${model.temp_min}',
+                              '${model.daily[0].temperatureHigh}/${model.daily[0].temperatureLow}',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontFamily: 'Roboto',
@@ -193,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Text(
-                              '${model.weather[0].description}'.toUpperCase(),
+                              '${model.summary}'.toUpperCase(),
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontFamily: 'Roboto',
@@ -234,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Color.fromRGBO(0, 33, 255, 1.0)),
                                   ),
                                   new Text(
-                                    '${fm.format(new DateTime.fromMillisecondsSinceEpoch((model.dt * 1000), isUtc: true))}',
+                                    '${fm.format(new DateTime.fromMillisecondsSinceEpoch((model.time * 1000), isUtc: true))}',
                                     style: TextStyle(
                                       fontSize: 15.0,
                                       height: 1,
@@ -305,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.temp}°C',
+                                                  '${model.temperature}°C',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -353,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.speed} m/s',
+                                                  '${model.daily[0].windSpeed} m/s',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -449,7 +450,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '${model.pressure} hPa',
+                                                  '23 hPa',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     height: 1.0,
@@ -552,7 +553,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         Text(
-                                          '${model.all} %',
+                                          '0 %',
                                           style: TextStyle(
                                             fontSize: 15.0,
                                             height: 1.0,

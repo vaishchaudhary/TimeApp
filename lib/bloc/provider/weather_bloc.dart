@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:weather_app/repository/provider/weather_repo.dart';
-import 'package:weather_app/weather.dart';
 import 'package:weather_app/weather_repository.dart';
+import 'package:weather_app/weathermodel.dart';
 part '../states/weather_state.dart';
 class Event
 {

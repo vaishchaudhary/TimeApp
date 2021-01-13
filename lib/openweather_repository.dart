@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:weather_app/weather.dart';
+import 'package:weather_app/repository/openweather/provider/openweather_entities/openweather_onecall_api_response.dart';
+import 'package:weather_app/weathermodel.dart';
+
+
 import 'mapper.dart';
 import 'openweather_client.dart';
-import 'openweather_response.dart';
+
 
 class OpenWeatherRepository {
   WeatherClient _weatherClient;
