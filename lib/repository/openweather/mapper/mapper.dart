@@ -7,11 +7,11 @@ WeatherModel mapOpenWeatherToWeather(WeatherResponse value) {
     ..latitude=value.lat
     ..longitude=value.lon
     ..timezone=value.timezone
-    ..temperature=value.current.temp
-    ..summary=value.current.weather[0].description
-    ..icon=value.current.weather[0].main
-    ..humidity=value.current.humidity
-    ..time=value.current.dt
+    ..temperature=value.current?.temp
+    ..summary=value.current?.weather[0].description
+    ..icon=value.current?.weather[0].main
+    ..humidity=value.current?.humidity
+    ..time=value.current?.dt
     ..hourly=value.hourly!=null
     ?List<WeatherData>.from(value.hourly.map((k) => WeatherData()
         ..summary=k.weather[0].description
@@ -20,12 +20,12 @@ WeatherModel mapOpenWeatherToWeather(WeatherResponse value) {
         ..temperature=k.temp
         ..windSpeed=k.wind_speed
         ..humidity=k.humidity
-        ..uvIndex=k.uvi
+       // ..uvIndex=k.uvi
         ..sunriseTime=value.current.sunrise
         ..sunsetTime=value.current.sunset
         ..windBearing=k.wind_deg
         ..apparentTemperature=k.feels_like
-        ..precipProbability=k.pop
+       // ..precipProbability=k.pop
         ..precipType=k.weather[0].main=="Rain"?"Rain":(k.weather[0].main=="Snow"?"Snow":null)
     )):null
     ..daily=value.daily!=null
@@ -38,11 +38,11 @@ WeatherModel mapOpenWeatherToWeather(WeatherResponse value) {
       ..temperature=k.temp.day
       ..apparentTemperature=k.feelsLike.day
       ..windSpeed=k.windSpeed
-      ..uvIndex=k.uvi
+   //   ..uvIndex=k.uvi
       ..humidity=k.humidity
       ..temperatureHigh=k.temp.max
       ..temperatureLow=k.temp.min
-      ..precipProbability=k.pop
+   //   ..precipProbability=k.pop
       ..precipType=k.weather[0].main=="Rain"?"Rain":(k.weather[0].main=="Snow"?"Snow":null)
     )):null;
     return weather;

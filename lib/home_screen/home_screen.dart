@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fit: BoxFit.fitWidth,
                             ),
                             Text(
-                              '${model.temperature}°C',
+                              '${15}°C',
                               style: TextStyle(
                                   fontSize: 40.0,
                                   fontWeight: FontWeight.bold,

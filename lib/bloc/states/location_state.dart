@@ -1,9 +1,4 @@
-
-
-
-
 import 'package:weather_app/repository/model/city_model.dart';
-
 class LocationState
 {
 

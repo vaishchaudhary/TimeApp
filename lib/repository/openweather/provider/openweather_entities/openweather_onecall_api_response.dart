@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:json_serializable/json_serializable.dart';
 part 'openweather_onecall_api_response.g.dart';
 @JsonSerializable()
 class WeatherResponse
@@ -46,8 +45,8 @@ class Current
   int pressure;
   @JsonKey(name: 'humidity')
   int humidity;
-  @JsonKey(name: 'dew_point')
-  double dewPoint;
+  // @JsonKey(name: 'dew_point')
+  // double dewPoint;
   @JsonKey(name: 'uvi')
   int uvi;
   @JsonKey(name: 'clouds')
@@ -60,7 +59,7 @@ class Current
   int  windDeg;
   @JsonKey(name: 'weather')
   List<Weather> weather;
-  Current({this.dt,this.sunrise,this.sunset,this.temp,this.feelsLike,this.pressure,this.humidity,this.dewPoint,this.uvi,this.clouds,this.visibility,this.weather,this.windSpeed,this.windDeg});
+  Current({this.dt,this.sunrise,this.sunset,this.temp,this.feelsLike,this.pressure,this.humidity,this.uvi,this.clouds,this.visibility,this.weather,this.windSpeed,this.windDeg});
 }
 @JsonSerializable()
 class Weather
@@ -106,10 +105,10 @@ class Hourly
   int pressure;
   @JsonKey(name :'humidity')
   int humidity;
-  @JsonKey(name: 'dew_point')
-  int dew_point;
-  @JsonKey(name: 'uvi')
-  double uvi;
+  // @JsonKey(name: 'dew_point')
+  // double dew_point;
+
+ // double uvi;
   @JsonKey(name :'clouds')
   int clouds;
   @JsonKey(name: 'visibility')
@@ -120,9 +119,9 @@ class Hourly
   int wind_deg;
   @JsonKey(name: 'weather')
   List<Weather> weather;
-  @JsonKey(name:'pop')
-  double pop;
-  Hourly({this.dt,this.temp,this.feels_like,this.pressure,this.humidity,this.dew_point,this.uvi,this.clouds,this.visibility,this.wind_speed,this.wind_deg,this.weather,this.pop});
+  // @JsonKey(name:'pop')
+  // double pop;
+  Hourly({this.dt,this.temp,this.feels_like,this.pressure,this.humidity,this.clouds,this.visibility,this.wind_speed,this.wind_deg,this.weather});
 }
 @JsonSerializable()
 class Daily
@@ -144,8 +143,8 @@ class Daily
   int  pressure;
   @JsonKey(name: 'humidity')
   int  humidity;
-  @JsonKey(name: 'dew_point')
-  int  dewPoint;
+  // @JsonKey(name: 'dew_point')
+  // int  dewPoint;
   @JsonKey(name: 'wind_speed')
   double  windSpeed;
   @JsonKey(name: 'wind_deg')
@@ -154,11 +153,11 @@ class Daily
   List<Weather> weather;
   @JsonKey(name: 'clouds')
   int clouds;
-  @JsonKey(name: 'pop')
-  double  pop;
-  @JsonKey(name: 'uvi')
-  double  uvi;
-  Daily({this.dt,this.sunrise,this.sunset,this.temp,this.feelsLike,this.pressure,this.humidity,this.dewPoint,this.windSpeed,this.windDeg,this.weather,this.clouds,this.pop,this.uvi});
+  // @JsonKey(name: 'pop')
+  // double  pop;
+  // @JsonKey(name: 'uvi')
+  // double  uvi;
+  Daily({this.dt,this.sunrise,this.sunset,this.temp,this.feelsLike,this.pressure,this.humidity,this.windSpeed,this.windDeg,this.weather,this.clouds});
 }
 @JsonSerializable()
 class Temp

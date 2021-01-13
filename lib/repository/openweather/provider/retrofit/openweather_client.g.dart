@@ -31,7 +31,7 @@ class _WeatherClient implements WeatherClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final Response<Map<String, dynamic>> _result = await _dio.request(
-        '2.5/weather',
+        '2.5/onecall',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',

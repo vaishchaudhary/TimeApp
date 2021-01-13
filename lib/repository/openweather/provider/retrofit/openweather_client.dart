@@ -8,7 +8,7 @@ part 'openweather_client.g.dart';
 abstract class WeatherClient {
   factory WeatherClient(Dio dio) = _WeatherClient;
 
-  static const String  _path='2.5/weather';
+  static const String  _path='2.5/onecall';
    static const String _keyLatitude='lat';
   static const String _keyLongitude='lon';
    static const String _keyUnits='units';
